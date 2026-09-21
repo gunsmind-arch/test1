@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta content="width=device-width,initial-scale=1" name="viewport" />
+<title>SOYOUN KIM — Designer & Creator</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&family=Noto+Sans+KR:wght@100;200;300;400;500;700&display=swap');
+:root{--bg:#f4f4f2;--text:#171717;--muted:#777;--line:#d8d8d5}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,"Noto Sans KR",sans-serif;font-weight:300}
+a{color:inherit;text-decoration:none}
+
+header{position:fixed;z-index:20;top:0;left:0;width:100%;padding:20px 34px;display:flex;justify-content:space-between;align-items:center;background:#fff;color:#171717;box-shadow:0 1px 0 rgba(0,0,0,.06)}
+.logo{font-size:13px;letter-spacing:.08em;font-weight:500}
+nav{display:flex;gap:28px;font-size:10px;letter-spacing:.12em}
+
+.hero{height:85svh;min-height:480px;position:relative;overflow:hidden;color:#fff;background:#000}
+.hero-bg{position:absolute;top:-10%;left:0;width:100%;height:120%;background:#000 url("images/hero.jpg") center/cover no-repeat;will-change:transform;transform:translate3d(0,0,0)}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.1) 35%,rgba(0,0,0,.35) 70%,rgba(0,0,0,.8) 100%);z-index:1}
+.hero-content{position:absolute;z-index:2;left:clamp(24px,6vw,90px);top:50%;transform:translateY(-42%);will-change:transform,opacity;max-width:900px}
+.eyebrow{font-size:18px;letter-spacing:.16em;margin-bottom:16px;font-weight:400}
+.hero h1{font-size:clamp(43px,6vw,82px);line-height:.98;font-weight:300;letter-spacing:-.045em;margin:0 0 54px}
+.hero p{font-family:"Noto Sans KR";font-size:15px;line-height:1.9;opacity:.9;margin:0 0 22px}
+.hero-tags{font-family:Inter,sans-serif;font-size:13px;font-weight:700;letter-spacing:.18em;color:#fff;opacity:.95;margin:0 0 34px;text-transform:uppercase}
+.button{display:inline-flex;border:1px solid rgba(255,255,255,.65);border-radius:30px;padding:10px 17px;font-size:9px;letter-spacing:.12em}
+.scroll{position:absolute;z-index:3;bottom:25px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:.12em;text-align:center;will-change:opacity}
+.scroll:after{content:"";display:block;width:1px;height:28px;background:#fff;margin:8px auto 0;opacity:.65}
+
+section{padding:110px clamp(24px,6vw,90px)}
+.section-head{display:flex;justify-content:space-between;align-items:end;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:42px}
+.kicker-num{font-size:clamp(19px,2.7vw,30px);font-weight:700;letter-spacing:-.02em;color:var(--text)}
+
+.about-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:6vw;align-items:start}
+.about-lead{font-size:clamp(24px,3.1vw,44px);line-height:1.18;letter-spacing:-.035em}
+.about-copy{font-family:"Noto Sans KR";font-size:15px;line-height:1.55;color:#555;max-width:620px}
+.about-copy p{margin:0 0 20px}
+.about-copy p:last-child{margin-bottom:0}
+.about-copy strong{font-weight:600;color:#333}
+
+.about-resume{margin-top:80px;display:grid;grid-template-columns:1.15fr 1fr;gap:6vw;align-items:start}
+.about-resume-left{display:block}
+.about-resume-right{display:block}
+
+.resume-block h4,
+.about-skills h4{font-size:18px;letter-spacing:.06em;color:var(--text);font-weight:500;margin:0 0 22px}
+.resume-block{margin-bottom:60px}
+.resume-block:last-child{margin-bottom:0}
+.resume-item{display:flex;gap:20px;padding:20px 0;border-top:1px solid var(--line)}
+.resume-year{flex:none;width:150px;font-size:13px;color:#888;letter-spacing:.02em;line-height:1.6}
+.resume-item b{font-size:15px;font-weight:500;display:block;margin-bottom:6px}
+.resume-item p{font-family:"Noto Sans KR";font-size:13px;color:#888;margin:6px 0 0;line-height:1.75}
+
+.about-skills{margin-top:0}
+.about-skills .skill-row{display:flex;align-items:center;gap:22px;padding:20px 0;border-top:1px solid var(--line)}
+.about-skills .skill-row:last-child{border-bottom:1px solid var(--line)}
+.about-skills .skill-row.ai-tools{display:block;padding:22px 0}
+.about-skills .skill-row.ai-tools .skill-text{margin-bottom:16px}
+.about-skills .skill-row.ai-tools .ai-logos{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.about-skills .skill-icon{flex:none;width:56px;height:56px;border-radius:12px;background:#fff;border:1px solid #e2e2df;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.05);overflow:hidden}
+.about-skills .skill-icon img{width:100%;height:100%;object-fit:contain;display:block;padding:9px}
+.about-skills .ai-logos{flex:none;display:flex;flex-wrap:wrap;gap:8px;align-items:center;min-width:236px}
+.about-skills .mini-logo{width:48px;height:48px;border-radius:12px;background:#fff;border:1px solid #e2e2df;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.05);overflow:hidden}
+.about-skills .mini-logo img{width:100%;height:100%;object-fit:contain;display:block;padding:6px}
+.about-skills .mini-logo svg{width:100%;height:100%;display:block}
+.about-skills .skill-text b{font-size:15px;font-weight:500}
+.about-skills .skill-text p{font-size:13px;color:#888;line-height:1.6;margin:5px 0 0}
+
+.works{background:#fff}
+.work-category{margin-bottom:100px}
+.category-head{display:flex;justify-content:center;align-items:baseline;margin-bottom:32px;text-align:center}
+.category-head h3{font-size:18px;font-weight:400;margin:0;letter-spacing:.06em}
+
+.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 12px;max-width:1470px;margin:0 auto}
+.work-grid.small{display:grid;grid-template-columns:repeat(4,1fr);gap:30px 12px;max-width:1470px;margin:0 auto}
+.grid-divider{border-top:1px solid var(--line);margin:44px auto 0;max-width:1470px}
+
+.work-card{
+  display:block;aspect-ratio:1/1;background:#d6d6d4;border:1px solid var(--line);
+  position:relative;overflow:hidden;background-position:center;background-repeat:no-repeat;background-size:cover;
+  cursor:pointer;transition:transform .35s ease, box-shadow .35s ease;
+  will-change:transform;touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;
+  scroll-margin-top:100px;
+}
+@media (hover:hover) and (pointer:fine){
+  .work-card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 16px 32px rgba(0,0,0,.18),0 4px 10px rgba(0,0,0,.08)}
+  .work-card:hover .view-tag{background:#171717;color:#fff}
+}
+.work-card.static{cursor:default;transition:none}
+.work-card.static:hover{transform:none;box-shadow:none}
+.work-no{position:absolute;left:16px;top:14px;font-size:10px;letter-spacing:.12em;color:#555;z-index:2}
+.view-tag{position:absolute;right:12px;top:12px;display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border-radius:20px;border:1px solid rgba(23,23,23,.15);background:rgba(255,255,255,.85);backdrop-filter:blur(6px);font-size:9px;letter-spacing:.08em;color:#333;z-index:3;transition:background .25s ease,color .25s ease}
+
+.contact{background:#000;color:#fff;min-height:auto;display:flex;flex-direction:column;justify-content:flex-start;position:relative;overflow:hidden;padding-top:60px;padding-bottom:60px}
+.contact-bg{position:absolute;inset:0;background:#000 url("images/contact.jpg") center/cover no-repeat;opacity:.35;z-index:0}
+.contact>*:not(.contact-bg){position:relative;z-index:2}
+.contact .section-head{border-color:#444;margin-bottom:120px}
+.contact .kicker-num{color:#fff}
+.contact-title{font-family:Inter,sans-serif;font-size:30px;font-weight:300;letter-spacing:-.02em;line-height:1.05;margin:0 0 30px;text-transform:none}
+.contact-tags{display:flex;flex-direction:column;gap:6px;font-family:Inter,sans-serif;font-size:15px;font-weight:400;letter-spacing:.04em;color:#bbb;margin:0 0 40px}
+.contact-tags span{display:block;line-height:1.6}
+.contact-info{margin-top:0;padding-top:0;display:flex;align-items:flex-start;flex-wrap:wrap;gap:0;font-size:15px;color:#aaa}
+.contact-info span{padding-right:24px;margin-right:24px;border-right:1px solid rgba(255,255,255,.25);line-height:1.8}
+.contact-info span:last-child{padding-right:0;margin-right:0;border-right:none}
+
+footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing:.08em;display:flex;justify-content:space-between}
+
+/* 모달 */
+.modal{position:fixed;inset:0;z-index:100;background:rgba(35,35,35,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);display:none;overflow-y:auto;padding:120px 24px 60px;-webkit-overflow-scrolling:touch}
+.modal.open{display:block}
+.modal-inner{max-width:1200px;margin:0 auto;background:var(--bg);border:1px solid var(--line);padding:clamp(24px,4vw,56px);position:relative}
+
+.modal-topbar{position:fixed;top:30px;left:50%;transform:translateX(-50%);z-index:200;display:none;justify-content:space-between;align-items:center;gap:16px;width:min(1200px, calc(100% - 48px));pointer-events:none}
+.modal-topbar.show{display:flex}
+.modal-topbar > *{pointer-events:auto}
+
+.modal-nav-btn{display:flex;align-items:center;gap:10px;padding:12px 26px;border-radius:40px;border:none;background:#000;color:#fff;font-size:11px;letter-spacing:.16em;font-family:Inter,sans-serif;cursor:pointer;width:fit-content;transition:background .3s ease,transform .3s ease;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.modal-nav-btn:hover{background:#222;transform:translateY(-2px)}
+.modal-nav-btn .arrow{display:inline-block;font-size:14px;transition:transform .3s ease}
+.modal-back:hover .arrow{transform:translateX(-4px)}
+.modal-next:hover .arrow{transform:translateX(4px)}
+.modal-nav-btn:disabled,.modal-nav-btn.disabled{opacity:.3;cursor:not-allowed;pointer-events:none}
+
+.modal-image-wrap{position:relative;width:100%}
+.modal-image{width:100%;aspect-ratio:47/30;background:#d6d6d4;border:1px solid var(--line);background-position:center;background-size:cover;background-repeat:no-repeat;position:relative;transition:background-image .3s ease}
+
+.img-nav{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;border:none;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#171717;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:4;transition:background .25s ease,transform .25s ease,color .25s ease;box-shadow:0 4px 14px rgba(0,0,0,.12);font-family:Inter,sans-serif;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.img-nav.prev{left:14px}
+.img-nav.next{right:14px}
+.img-nav:disabled{opacity:.25;cursor:not-allowed;pointer-events:none}
+@media (hover:hover) and (pointer:fine){.img-nav:hover{background:#171717;color:#fff;transform:translateY(-50%) scale(1.08)}}
+.img-nav:active{background:#171717;color:#fff}
+
+.modal-thumbs{display:flex;gap:14px;margin-top:20px;flex-wrap:wrap;justify-content:center}
+.thumb{width:88px;height:88px;flex:none;border-radius:10px;background:#d6d6d4;border:1px solid var(--line);background-position:center;background-size:cover;background-repeat:no-repeat;cursor:pointer;position:relative;overflow:hidden;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.thumb:hover{transform:translateY(-3px);border-color:#999}
+.thumb.active{border:2px solid #171717;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+
+.modal-info{margin-top:40px;display:block;text-align:center}
+.modal-num{display:none}
+.modal-title{
+  font-size:clamp(20px,2.2vw,32px);
+  font-weight:300;
+  letter-spacing:-.03em;
+  line-height:1.15;
+  margin:0 0 14px;
+  color:var(--text);
+}
+
+/* 공통 */
+.modal-title .title-sub{
+  display:block;
+  font-weight:500;
+  color:#555;
+  margin-bottom:6px;
+  letter-spacing:-.02em;
+}
+.modal-title .title-main{
+  display:block;
+  font-size:1em;
+  font-weight:700;
+  color:var(--text);
+  letter-spacing:-.03em;
+}
+
+/* ★ 04~06 : 서브 48%, 얇은 300 */
+.modal-title.t-style-a .title-sub{
+  font-size:.48em;
+  font-weight:300;
+  letter-spacing:-.02em;
+}
+
+/* ★ 07~09 : 서브 60% 로 축소, 자간 10px / 메인 살짝 얇게, 자간 10px */
+.modal-title.t-style-b .title-sub{
+  font-size:.6em;              /* 기존 1em → 0.6em (60%) */
+  font-weight:300;
+  letter-spacing:10px;         /* ★ 10px 로 통일 */
+  margin-bottom:10px;
+  margin-right:-10px;          /* 우측 쏠림 방지 */
+}
+.modal-title.t-style-b .title-main{
+  font-weight:600;
+  letter-spacing:10px;         /* ★ 10px 로 통일 */
+  margin-right:-10px;
+}
+
+.modal-meta{margin:0 0 18px;display:flex;justify-content:center;gap:28px;font-size:12px;letter-spacing:.08em;color:#666}
+.modal-meta div{display:inline-flex;align-items:center;gap:8px}
+.modal-meta dt{color:var(--muted);font-size:11px;letter-spacing:.16em}
+.modal-meta dd{margin:0;color:#333}
+.modal-meta.hide{display:none}
+
+.modal-desc{display:none}
+
+.modal-extra{
+  margin-top:28px;padding-top:28px;border-top:1px solid var(--line);
+  display:flex;flex-direction:column;gap:22px;padding-left:76px;
+}
+.extra-row{display:grid;grid-template-columns: 110px 1fr;gap:16px;align-items:start}
+.extra-label{
+  font-family:Inter,sans-serif;font-size:13px;font-weight:700;letter-spacing:.2em;
+  color:var(--text);line-height:1.5;text-align:left;padding-top:2px;
+}
+.extra-content{text-align:left;min-width:0}
+.extra-body{
+  font-family:"Noto Sans KR",sans-serif;font-size:14px;line-height:1.75;
+  color:#555;margin:0 0 10px;text-align:left;
+}
+.extra-body:last-child{margin-bottom:0}
+
+.extra-values{
+  display:flex;align-items:baseline;flex-wrap:wrap;gap:56px;
+  font-family:Inter,sans-serif;font-size:13px;letter-spacing:.06em;color:#555;line-height:1.5;padding-top:2px;
+}
+.extra-values .item{display:inline-flex;align-items:baseline;gap:16px}
+.extra-values .item .k{font-weight:700;color:var(--text);letter-spacing:.14em}
+.extra-values .item .v{font-weight:400;color:#555}
+
+.keyword-line{font-family:"Noto Sans KR",sans-serif;font-size:13px;letter-spacing:.04em;color:#333;font-weight:700;margin:10px 0 0;text-align:left}
+.keyword-line b{font-weight:700;color:#333;letter-spacing:.06em}
+
+.extra-tags{font-family:Inter,sans-serif;font-size:13px;font-weight:400;letter-spacing:.06em;color:#555;margin:0;text-align:left;line-height:1.5;padding-top:2px}
+
+.color-pair{display:flex;flex-wrap:wrap;gap:60px;align-items:flex-start}
+.color-block{display:flex;align-items:center;gap:14px}
+.color-block .color-chip{width:52px;height:44px;border-radius:10px;box-shadow:0 3px 10px rgba(0,0,0,.10);flex:none}
+.color-block .color-text{display:flex;flex-direction:column;gap:4px}
+.color-block .color-name{font-family:Inter,sans-serif;font-size:13px;letter-spacing:.14em;font-weight:700;color:var(--text);text-align:left;white-space:nowrap}
+.color-block .color-cmyk{font-family:Inter,sans-serif;font-size:12px;letter-spacing:.04em;color:#777;text-align:left;white-space:nowrap}
+.color-with-note{display:flex;flex-wrap:wrap;gap:48px;align-items:center}
+.color-with-note .color-block{flex:none}
+.color-with-note .color-note-side{font-family:"Noto Sans KR",sans-serif;font-size:13px;line-height:1.8;color:#555;text-align:left;max-width:520px;margin:0}
+.color-note-single{font-family:"Noto Sans KR",sans-serif;font-size:12.5px;line-height:1.8;color:#555;text-align:left;margin:18px 0 0;white-space:nowrap;overflow-x:auto}
+.color-note-single::-webkit-scrollbar{height:4px}
+.color-note-single::-webkit-scrollbar-thumb{background:#ccc;border-radius:2px}
+.color-chip.navy{background:#1a2a52}
+.color-chip.red{background:#c8102e}
+.color-chip.black{background:#000000}
+.color-chip.orange{background:#e8631a}
+.color-chip.burgundy{background:#7d2a3c}
+
+.modal-30{display:block;text-align:center;padding:8px 0 0}
+.m30-header{text-align:center;margin-bottom:44px}
+.m30-title{font-size:clamp(26px,3vw,42px);font-weight:300;letter-spacing:-.03em;line-height:1.15;margin:0;color:var(--text)}
+.m30-radio-section{margin-top:56px;padding-top:40px;border-top:1px solid var(--line);text-align:left}
+.m30-section-head{font-family:Inter,sans-serif;font-size:16px;font-weight:700;letter-spacing:.14em;color:var(--text);text-align:center;margin:0 0 10px}
+.m30-section-meta{font-family:Inter,sans-serif;font-size:12px;font-weight:500;letter-spacing:.1em;color:#888;text-align:center;margin:0 0 24px}
+.m30-section-meta .m30-year{font-weight:700;color:#333;margin-right:14px;letter-spacing:.14em}
+.m30-radio-list{display:flex;flex-direction:column;gap:22px;max-width:820px;margin:0 auto}
+.m30-radio-item{display:grid;grid-template-columns: 34px 1fr auto;gap:18px;align-items:center;padding:16px 20px;background:#fff;border:1px solid var(--line);border-radius:12px;text-align:left}
+.m30-radio-no{font-family:Inter,sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;color:#aaa;text-align:center}
+.m30-radio-info b{font-family:"Noto Sans KR",sans-serif;font-size:14px;font-weight:700;color:var(--text);display:block;margin-bottom:4px}
+.m30-radio-info p{font-family:"Noto Sans KR",sans-serif;font-size:13px;color:#777;margin:0 0 4px;line-height:1.5}
+.m30-radio-info .m30-keyword{font-family:Inter,sans-serif;font-size:11px;letter-spacing:.12em;color:#999;margin:0}
+.m30-audio-wrap{display:flex;align-items:center;gap:12px;flex:none}
+.m30-audio-btn{width:38px;height:38px;border-radius:50%;border:none;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;cursor:pointer;transition:transform .2s ease, background .2s ease}
+.m30-audio-btn:hover{background:#333;transform:scale(1.05)}
+.m30-audio-btn svg{width:14px;height:14px;fill:#fff}
+.m30-audio-track{position:relative;width:180px;height:4px;border-radius:2px;background:#e3e3e0;overflow:hidden;cursor:pointer}
+.m30-audio-fill{position:absolute;left:0;top:0;bottom:0;width:0%;background:#000}
+.m30-audio-time{font-family:Inter,sans-serif;font-size:11px;letter-spacing:.08em;color:#888;min-width:38px;text-align:right}
+.m30-tv-section{margin-top:56px;padding-top:40px;border-top:1px solid var(--line);text-align:center}
+.m30-tv-head{font-family:Inter,sans-serif;font-size:16px;font-weight:700;letter-spacing:.14em;color:var(--text);margin:0 0 10px}
+.m30-tv-meta{font-family:Inter,sans-serif;font-size:12px;font-weight:500;letter-spacing:.1em;color:#888;text-align:center;margin:0 0 24px}
+.m30-tv-meta .m30-year{font-weight:700;color:#333;margin-right:14px;letter-spacing:.14em}
+.m30-tv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:980px;margin:0 auto 24px}
+.m30-tv-slot{aspect-ratio:16/9;background:#d6d6d4;border:1px solid var(--line);border-radius:10px;background-position:center;background-size:cover;background-repeat:no-repeat;position:relative;overflow:hidden}
+.m30-tv-desc{font-family:"Noto Sans KR",sans-serif;font-size:13.5px;line-height:1.8;color:#555;max-width:720px;margin:0 auto;text-align:center}
+
+@media(max-width:800px){
+  header{padding:17px 20px}
+  nav{gap:14px;font-size:8px}
+  .hero-content{left:22px;right:22px}
+  .hero h1{font-size:44px;margin-bottom:36px}
+  .eyebrow{font-size:14px}
+  .hero p{font-size:13px;line-height:1.9}
+  .hero-tags{font-size:11px;letter-spacing:.14em}
+  section{padding:75px 20px}
+  .about-grid{grid-template-columns:1fr;gap:30px}
+  .about-copy{font-size:14px;line-height:1.6}
+  .about-resume{grid-template-columns:1fr;gap:50px;margin-top:50px}
+  .resume-block{margin-bottom:44px}
+  .resume-block h4,.about-skills h4{font-size:16px}
+  .resume-item{flex-direction:column;gap:6px;padding:16px 0}
+  .resume-year{width:auto;font-size:12px}
+  .resume-item b{font-size:14px}
+  .resume-item p{font-size:12px}
+  .about-skills .skill-row{flex-wrap:wrap;gap:14px;padding:16px 0}
+  .about-skills .skill-icon{width:46px;height:46px}
+  .about-skills .mini-logo{width:38px;height:38px}
+  .about-skills .skill-text b{font-size:14px}
+  .about-skills .skill-text p{font-size:12px}
+  .work-grid{grid-template-columns:repeat(2,1fr);gap:20px 6px;max-width:100%}
+  .work-grid.small{grid-template-columns:repeat(2,1fr);gap:20px 6px;max-width:100%}
+  .grid-divider{max-width:100%}
+  .work-category{margin-bottom:70px}
+  .contact{padding-top:50px;padding-bottom:50px}
+  .contact .section-head{margin-bottom:100px}
+  .contact-title{font-size:22px;margin:0 0 22px}
+  .contact-tags{font-size:14px;margin-bottom:30px}
+  .contact-info{margin-top:0;padding-top:0;font-size:14px;flex-direction:column;gap:12px}
+  .contact-info span{border-right:none;padding-right:0;margin-right:0;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.2)}
+  .contact-info span:last-child{border-bottom:none}
+  footer{padding:18px 20px;flex-direction:column;gap:6px}
+
+  .modal{padding:100px 12px 40px}
+  .modal-info{margin-top:28px}
+  .modal-title{margin-bottom:10px}
+  .modal-meta{flex-direction:column;gap:6px;align-items:center;margin-bottom:14px}
+  .modal-topbar{top:20px;width:calc(100% - 24px)}
+  .modal-nav-btn{padding:10px 18px;font-size:10px;letter-spacing:.12em}
+  .thumb{width:45px;height:45px}
+  .modal-thumbs{gap:8px}
+  .img-nav{width:30px;height:30px;font-size:20px}
+  .img-nav.prev{left:8px}
+  .img-nav.next{right:8px}
+
+  /* 모바일에서는 자간 추가 완화 */
+  .modal-title.t-style-b .title-sub{letter-spacing:4px;margin-right:-4px}
+  .modal-title.t-style-b .title-main{letter-spacing:4px;margin-right:-4px}
+
+  .modal-extra{padding-left:16px;margin-top:22px;padding-top:22px;gap:18px}
+  .extra-row{grid-template-columns:1fr;gap:8px}
+  .extra-label{padding-top:0}
+  .extra-values{gap:20px}
+
+  .color-pair{gap:24px}
+  .color-block{gap:12px}
+  .color-block .color-chip{width:42px;height:36px}
+  .color-block .color-name{font-size:12px}
+  .color-block .color-cmyk{font-size:11px}
+  .color-with-note{flex-direction:column;gap:14px;align-items:flex-start}
+  .color-with-note .color-note-side{max-width:100%;font-size:12px}
+  .color-note-single{white-space:normal;font-size:12px;margin-top:14px}
+
+  .m30-radio-item{grid-template-columns: 26px 1fr; row-gap:12px;}
+  .m30-audio-wrap{grid-column: 1 / -1; justify-content:flex-start;}
+  .m30-audio-track{width:120px;}
+  .m30-tv-grid{grid-template-columns:1fr;}
+}
+@media (prefers-reduced-motion: reduce){
+  .hero-bg{transform:none !important}
+  .hero-content{transform:translateY(-42%) !important;opacity:1 !important}
+}
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="#top">SOYOUN KIM</a>
+  <nav>
+    <a href="#about">ABOUT</a>
+    <a href="#work">WORK</a>
+    <a href="#contact">CONTACT</a>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero" id="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-content" id="heroContent">
+      <div class="eyebrow">VISUAL DESIGNER</div>
+      <h1>Designing for a<br/>more meaningful<br/>tomorrow.</h1>
+      <p>브랜드 아이덴티티부터 편집, 그래픽, 디지털 콘텐츠까지<br/>20년 이상의 실무 경험을 바탕으로<br/>브랜드의 방향을 시각적인 언어로 설계하고 표현합니다.</p>
+      <div class="hero-tags">BRAND IDENTITY · EDITORIAL · GRAPHIC · DIGITAL</div>
+      <a class="button" href="#work">VIEW MY WORK  ↘</a>
+    </div>
+    <div class="scroll" id="heroScroll">Scroll</div>
+  </section>
+
+  <section id="about">
+    <div class="section-head"><span class="kicker-num">1. About</span></div>
+    <div class="about-grid">
+      <div class="about-lead">안녕하세요.<br/>저는 디자이너<br/><strong>김소연</strong>입니다.</div>
+      <div class="about-copy">
+        <p>브랜드의 방향을 시각적인 언어로 정리하고,<br/>다양한 매체에 일관된 비주얼로 구현하는 디자인을 해왔습니다.</p>
+        <p>20년 이상의 실무 경험을 바탕으로<br/>Brand Identity, Editorial Design, Marketing Communication부터<br/>실제 인쇄 제작과 협업 과정까지 폭넓게 경험했습니다.</p>
+        <p>특히 대형 견본책과 다양한 브랜드 프로젝트를 통해<br/><strong>기획부터 디자인, 제작 관리까지 프로젝트의 전과정을</strong> 직접 경험했습니다.</p>
+      </div>
+    </div>
+
+    <div class="about-resume">
+      <div class="about-resume-left">
+        <div class="resume-block">
+          <h4>Experience</h4>
+          <div class="resume-item"><span class="resume-year">2019.09 — 2026.07</span><div><b>케이에스더블유 · 디자인실 실장</b><p>KS벽지 · 제일벽지 · 코스모스벽지 · 디아이디벽지 브랜드 및 시각디자인 전반 담당</p></div></div>
+          <div class="resume-item"><span class="resume-year">2013.10 — 2019.08</span><div><b>제일벽지 · 디자인실 차장</b><p>디자인실 시각팀 팀장으로 견본책 제작, 제품 패키지, 광고 및 홍보 디자인 담당</p></div></div>
+          <div class="resume-item"><span class="resume-year">2010.10 — 2012.10</span><div><b>삼익악기 · 디자이너 대리</b><p>해외영업팀 디자이너로 제품 그래픽, 카탈로그, 전시, 웹사이트 및 판촉물 디자인 담당</p></div></div>
+          <div class="resume-item"><span class="resume-year">2005.09 — 2009.01</span><div><b>신한벽지 · 디자인팀 주임</b><p>벽지 샘플북 디자인 및 제품 패키지, 판촉물, 광고, 홍보, 전시디자인 담당</p></div></div>
+        </div>
+        <div class="resume-block">
+          <h4>Education</h4>
+          <div class="resume-item"><span class="resume-year">2001 — 2005</span><div><b>한양대학교 그래픽 패키지 디자인학과</b><p>학사 졸업</p></div></div>
+        </div>
+      </div>
+
+      <div class="about-resume-right">
+        <div class="about-skills">
+          <h4>Skills</h4>
+          <div class="skill-row"><span class="skill-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg" alt="Adobe Photoshop"></span><div class="skill-text"><b>Adobe Photoshop</b><p>이미지 편집 · 리터칭 · 합성</p></div></div>
+          <div class="skill-row"><span class="skill-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Adobe_Illustrator_CC_icon.svg" alt="Adobe Illustrator"></span><div class="skill-text"><b>Adobe Illustrator</b><p>아이덴티티 · 그래픽 디자인 · 일러스트레이션</p></div></div>
+          <div class="skill-row"><span class="skill-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Adobe_InDesign_CC_icon.svg" alt="Adobe InDesign"></span><div class="skill-text"><b>Adobe InDesign</b><p>편집 · 레이아웃 · 퍼블리케이션</p></div></div>
+
+          <div class="skill-row ai-tools">
+            <div class="skill-text"><b>AI DESIGN TOOLS</b><p>ChatGPT · Claude · Gemini · Canva · Runway · Figma · Midjourney · Capcut · Vrew</p></div>
+            <div class="ai-logos">
+              <span class="mini-logo" title="ChatGPT"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#10a37f" style="padding:8px"><path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.759a.771.771 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 7.896a4.485 4.485 0 0 1 2.366-1.973V11.6a.766.766 0 0 0 .388.676l5.815 3.355-2.02 1.168a.076.076 0 0 1-.071 0l-4.83-2.786A4.504 4.504 0 0 1 2.34 7.872zm16.597 3.855-5.833-3.387L15.119 7.2a.076.076 0 0 1 .071 0l4.83 2.791a4.494 4.494 0 0 1-.676 8.105v-5.678a.79.79 0 0 0-.407-.667zm2.01-3.023-.141-.085-4.774-2.782a.776.776 0 0 0-.785 0L9.409 9.23V6.897a.066.066 0 0 1 .028-.061l4.83-2.787a4.5 4.5 0 0 1 6.68 4.66zm-12.64 4.135-2.02-1.164a.08.08 0 0 1-.038-.057V6.075a4.5 4.5 0 0 1 7.375-3.453l-.142.08L8.704 5.46a.795.795 0 0 0-.393.681zm1.097-2.365 2.602-1.5 2.607 1.5v3.001l-2.598 1.5-2.607-1.5Z"/></svg></span>
+              <span class="mini-logo" title="Claude"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#d97757" style="padding:7px"><path d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/></svg></span>
+              <span class="mini-logo" title="Gemini"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="padding:7px"><defs><linearGradient id="geminiGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#4285F4"/><stop offset="50%" stop-color="#9B72CB"/><stop offset="100%" stop-color="#D96570"/></linearGradient></defs><path fill="url(#geminiGrad)" d="M12 24A14.304 14.304 0 0 0 0 12 14.304 14.304 0 0 0 12 0a14.305 14.305 0 0 0 12 12 14.305 14.305 0 0 0-12 12"/></svg></span>
+              <span class="mini-logo" title="Canva"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="padding:6px"><defs><linearGradient id="canvaGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00c4cc"/><stop offset="50%" stop-color="#7d2ae8"/><stop offset="100%" stop-color="#6420ff"/></linearGradient></defs><circle cx="12" cy="12" r="12" fill="url(#canvaGrad)"/><text x="12" y="16.5" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="13" fill="#fff" font-weight="700">C</text></svg></span>
+              <span class="mini-logo" title="Runway"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="padding:5px"><circle cx="12" cy="12" r="12" fill="#000"/><path d="M7.5 18V6h5.2c2.4 0 4 1.3 4 3.5 0 1.6-.9 2.7-2.3 3.1L18 18h-2.6l-3-5h-2.3v5H7.5zm2.6-7h2.4c1.2 0 1.9-.6 1.9-1.5s-.7-1.5-1.9-1.5h-2.4V11z" fill="#fff"/></svg></span>
+              <span class="mini-logo" title="Figma"><svg viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg" style="padding:7px"><path fill="#0acf83" d="M7.5 0H5.625a2.625 2.625 0 0 0 0 5.25H7.5V0Z"/><path fill="#a259ff" d="M7.5 0h1.875a2.625 2.625 0 0 1 0 5.25H7.5V0Z"/><path fill="#f24e1e" d="M7.5 5.25H5.625a2.625 2.625 0 0 0 0 5.25H7.5V5.25Z"/><path fill="#1abcfe" d="M10.312 7.875a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"/><path fill="#0acf83" d="M5.625 10.5H7.5v2.625a2.625 2.625 0 1 1-1.875-2.625Z"/></svg></span>
+              <span class="mini-logo" title="Midjourney"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="padding:5px"><circle cx="12" cy="12" r="12" fill="#000"/><path d="M4 16.5c1.2-.9 2.4-1.4 3.6-1.4 1.5 0 2.4.9 3.6.9s1.9-.9 3.4-.9c1.1 0 2.2.5 3.4 1.4" stroke="#fff" stroke-width="1.3" fill="none" stroke-linecap="round"/><path d="M5 15.2 3.8 13h16.4l-1.2 2.2" stroke="#fff" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 5.5c2.2.7 5.2 4 6.2 7.6-.6-.2-1-.5-1.8-.3-.8-2.8-2.2-5.5-4.4-7.3Z" fill="#fff"/><path d="M6.5 4c2.8 1.3 6.6 4.7 7.4 9.1-3.2-1.3-5.7-.6-7.4.4 2.6-3.4 1.5-7.2.1-9.5Z" fill="#fff"/></svg></span>
+              <span class="mini-logo" title="CapCut"><svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="#000" style="padding:7px"><path d="M43.5 35.9 4.505 16.241V14.86a3.717 3.717 0 0 1 3.722-3.728h21.997a3.717 3.717 0 0 1 3.723 3.728v1.695"/><path d="m43.5 11.835-39 19.66.005 1.646a3.717 3.717 0 0 0 3.723 3.728h21.996a3.717 3.717 0 0 0 3.723-3.728v-1.948"/></svg></span>
+              <span class="mini-logo" title="Vrew"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="padding:5px"><rect x="0" y="0" width="24" height="24" rx="6" fill="#0f4c81"/><path d="M6.5 7.5 12 17l5.5-9.5" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="works" id="work">
+    <div class="section-head"><span class="kicker-num">2. Works</span></div>
+
+    <div class="work-category">
+      <div class="category-head"><h3>IDENTITY DESIGN</h3></div>
+      <div class="work-grid">
+        <a class="work-card" href="javascript:void(0)" data-id="01" data-cat="IDENTITY DESIGN" data-images="id01-1.jpg,id01-2.jpg,id01-3.jpg,id01-4.jpg,id01-5.jpg" style="background-image:url('images/id01.jpg')"><span class="work-no">01</span><span class="view-tag">DETAIL ↗</span></a>
+        <a class="work-card" href="javascript:void(0)" data-id="02" data-cat="IDENTITY DESIGN" data-images="id02-1.jpg,id02-2.jpg,id02-3.jpg,id02-4.jpg,id02-5.jpg" style="background-image:url('images/id02.jpg')"><span class="work-no">02</span><span class="view-tag">DETAIL ↗</span></a>
+        <a class="work-card" href="javascript:void(0)" data-id="03" data-cat="IDENTITY DESIGN" data-images="id03-1.jpg,id03-2.jpg,id03-3.jpg,id03-4.jpg,id03-5.jpg" style="background-image:url('images/id03.jpg')"><span class="work-no">03</span><span class="view-tag">DETAIL ↗</span></a>
+      </div>
+    </div>
+
+    <div class="work-category">
+      <div class="category-head"><h3>EDITORIAL DESIGN</h3></div>
+      <div class="work-grid">
+        <a class="work-card" href="javascript:void(0)" data-id="04" data-cat="EDITORIAL DESIGN" data-images="work01-1.jpg,work01-2.jpg,work01-3.jpg,work01-4.jpg,work01-5.jpg" style="background-image:url('images/work01.jpg')"><span class="work-no">04</span><span class="view-tag">DETAIL ↗</span></a>
+        <a class="work-card" href="javascript:void(0)" data-id="05" data-cat="EDITORIAL DESIGN" data-images="work02-1.jpg,work02-2.jpg,work02-3.jpg,work02-4.jpg,work02-5.jpg" style="background-image:url('images/work02.jpg')"><span class="work-no">05</span><span class="view-tag">DETAIL ↗</span></a>
+        <a class="work-card" href="javascript:void(0)" data-id="06" data-cat="EDITORIAL DESIGN" data-images="work03-1.jpg,work03-2.jpg,work03-3.jpg,work03-4.jpg,work03-5.jpg" style="background-image:url('images/work03.jpg')"><span class="work-no">06</span><span class="view-tag">DETAIL ↗</span></a>
+        <a class="work-card" href="javascript:void(0)" data-id="07" data-cat="EDITORIAL DESIGN" data-images="work04-1.jpg,work04-2.jpg,work04-3.jpg,work04-4.jpg,work04-5.jpg" style="background-image:url('images/work04.jpg')"><span class="work-no">07</span><span class="view-tag">DETAIL ↗</span></a>
+        <a class="work-card" href="javascript:void(0)" data-id="08" data-cat="EDITORIAL DESIGN" data-images="work05-1.jpg,work05-2.jpg,work05-3.jpg,work05-4.jpg,work05-5.jpg" style="background-image:url('images/work05.jpg')"><span class="work-no">08</span><span class="view-tag">DETAIL ↗</span></a>
+        <a class="work-card" href="javascript:void(0)" data-id="09" data-cat="EDITORIAL DESIGN" data-images="work06-1.jpg,work06-2.jpg,work06-3.jpg,work06-4.jpg,work06-5.jpg" style="background-image:url('images/work06.jpg')"><span class="work-no">09</span><span class="view-tag">DETAIL ↗</span></a>
+      </div>
+      <div class="grid-divider"></div>
+
+      <div class="work-grid small" style="margin-top:40px">
+        <div class="work-card static" style="background-image:url('images/work07.jpg')"><span class="work-no">10</span></div>
+        <div class="work-card static" style="background-image:url('images/work08.jpg')"><span class="work-no">11</span></div>
+        <div class="work-card static" style="background-image:url('images/work09.jpg')"><span class="work-no">12</span></div>
+        <div class="work-card static" style="background-image:url('images/work10.jpg')"><span class="work-no">13</span></div>
+        <div class="work-card static" style="background-image:url('images/work11.jpg')"><span class="work-no">14</span></div>
+        <div class="work-card static" style="background-image:url('images/work12.jpg')"><span class="work-no">15</span></div>
+        <div class="work-card static" style="background-image:url('images/work13.jpg')"><span class="work-no">16</span></div>
+        <div class="work-card static" style="background-image:url('images/work14.jpg')"><span class="work-no">17</span></div>
+        <div class="work-card static" style="background-image:url('images/work15.jpg')"><span class="work-no">18</span></div>
+        <div class="work-card static" style="background-image:url('images/work16.jpg')"><span class="work-no">19</span></div>
+        <div class="work-card static" style="background-image:url('images/work17.jpg')"><span class="work-no">20</span></div>
+        <div class="work-card static" style="background-image:url('images/work18.jpg')"><span class="work-no">21</span></div>
+        <div class="work-card static" style="background-image:url('images/work19.jpg')"><span class="work-no">22</span></div>
+        <div class="work-card static" style="background-image:url('images/work20.jpg')"><span class="work-no">23</span></div>
+        <div class="work-card static" style="background-image:url('images/work21.jpg')"><span class="work-no">24</span></div>
+        <div class="work-card static" style="background-image:url('images/work22.jpg')"><span class="work-no">25</span></div>
+        <div class="work-card static" style="background-image:url('images/work23.jpg')"><span class="work-no">26</span></div>
+        <div class="work-card static" style="background-image:url('images/work24.jpg')"><span class="work-no">27</span></div>
+        <div class="work-card static" style="background-image:url('images/work25.jpg')"><span class="work-no">28</span></div>
+        <div class="work-card static" style="background-image:url('images/work26.jpg')"><span class="work-no">29</span></div>
+      </div>
+    </div>
+
+    <div class="work-category">
+      <div class="category-head"><h3>MARKETING</h3></div>
+      <div class="work-grid">
+        <a class="work-card" href="javascript:void(0)" data-id="28" data-cat="MARKETING" data-images="market01-1.jpg,market01-2.jpg,market01-3.jpg,market01-4.jpg" style="background-image:url('images/market01.jpg')"><span class="work-no">28</span><span class="view-tag">DETAIL ↗</span></a>
+        <a class="work-card" href="javascript:void(0)" data-id="29" data-cat="MARKETING" data-images="market02-1.jpg,market02-2.jpg,market02-3.jpg,market02-4.jpg,market02-5.jpg,market02-6.jpg" style="background-image:url('images/market02.jpg')"><span class="work-no">29</span><span class="view-tag">DETAIL ↗</span></a>
+        <a class="work-card" href="javascript:void(0)" data-id="30" data-cat="MARKETING" data-images="" style="background-image:url('images/market03.jpg')"><span class="work-no">30</span><span class="view-tag">DETAIL ↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="contact-bg"></div>
+    <div class="section-head"><span class="kicker-num">3. Contact</span></div>
+    <div>
+      <h2 class="contact-title">Let's work together</h2>
+      <div class="contact-tags">
+        <span>Brand Identity</span>
+        <span>Editorial Design</span>
+        <span>Visual Communication</span>
+        <span>Design Direction</span>
+      </div>
+      <div class="contact-info">
+        <span>Email&nbsp;&nbsp;art2no@naver.com</span>
+        <span>Mobile&nbsp;&nbsp;010-3344-5594</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>© SOYOUN KIM</span>
+  <span>PORTFOLIO</span>
+</footer>
+
+<div class="modal-topbar" id="modalTopbar">
+  <button class="modal-nav-btn modal-back" id="modalPre" aria-label="previous"><span class="arrow">←</span><span>PRE</span></button>
+  <button class="modal-nav-btn modal-home" id="modalHome" aria-label="home"><span>HOME</span></button>
+  <button class="modal-nav-btn modal-next" id="modalNext" aria-label="next"><span>NEXT</span><span class="arrow">→</span></button>
+</div>
+
+<div class="modal" id="modal">
+  <div class="modal-inner">
+    <div id="modalStandard">
+      <div class="modal-image-wrap">
+        <button class="img-nav prev" id="imgPrev" aria-label="prev image">‹</button>
+        <div class="modal-image" id="modalImage"></div>
+        <button class="img-nav next" id="imgNext" aria-label="next image">›</button>
+      </div>
+      <div class="modal-thumbs" id="modalThumbs"></div>
+      <div class="modal-info">
+        <div class="modal-num" id="modalNum"></div>
+        <h2 class="modal-title" id="modalTitle">프로젝트 제목</h2>
+        <dl class="modal-meta" id="modalMeta">
+          <div><dt>YEAR</dt><dd id="modalYear">2024</dd></div>
+          <div><dt>ROLE</dt><dd id="modalRole">Brand Identity, Art Direction</dd></div>
+        </dl>
+      </div>
+      <div class="modal-extra" id="modalExtra" style="display:none"></div>
+    </div>
+    <div class="modal-30" id="modalThirty" style="display:none"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  function detailHTML(company, year, edition, role){
+    return `
+      <div class="extra-row">
+        <div class="extra-label">COMPANY</div>
+        <div class="extra-content">
+          <div class="extra-values">
+            <span class="item"><span class="v">${company}</span></span>
+            <span class="item"><span class="k">YEAR</span><span class="v">${year}</span></span>
+            <span class="item"><span class="k">EDITION</span><span class="v">${edition}</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="extra-row role-row">
+        <div class="extra-label">ROLE</div>
+        <div class="extra-content"><p class="extra-tags">${role}</p></div>
+      </div>
+    `;
+  }
+
+  const PROJECT_DATA = {
+    "01": {
+      title: "케이에스더블유 CI", year: "2024",
+      role: "Corporate Identity, Graphic Design, Art Direction",
+      extra: `
+        <div class="extra-row"><div class="extra-label">CONCEPT</div><div class="extra-content">
+          <p class="extra-body">
+            벽지를 한 폭씩 이어 붙이는 시공 방식에서 착안하여 ‘K’의 형태를 여러 개의 면으로 분할하고 유기적으로 연결했습니다.<br/>
+            벽지가 반복적으로 이어지며 하나의 면을 완성하는 과정을 K의 구조 안에 담아 벽지 전문 기업의 정체성을 표현했습니다.
+          </p>
+          <div class="keyword-line">핵심 키워드&nbsp;&nbsp;<b>분할 / 반복 / 연결 / 리듬</b></div>
+        </div></div>
+        <div class="extra-row"><div class="extra-label">COLOR</div><div class="extra-content">
+          <div class="color-pair">
+            <div class="color-block"><div class="color-chip navy"></div><div class="color-text"><div class="color-name">NAVY</div><div class="color-cmyk">[ C 100, M 93, Y 53, K 17 ]</div></div></div>
+            <div class="color-block"><div class="color-chip red"></div><div class="color-text"><div class="color-name">RED</div><div class="color-cmyk">[ C 33, M 100, Y 94, K 0 ]</div></div></div>
+          </div>
+        </div></div>
+      `
+    },
+    "02": {
+      title: "KS벽지 CI", year: "2019",
+      role: "Corporate Identity, Graphic Design, Website Art Direction",
+      extra: `
+        <div class="extra-row"><div class="extra-label">CONCEPT</div><div class="extra-content">
+          <p class="extra-body">
+            K와 S를 하나의 형태로 결합하고, 이를 집과 공간을 상징하는 프레임 안에 담았습니다.<br/>
+            K와 S의 각 면은 벽지의 부드럽게 이어지는 표면에서 모티프를 얻어 유연한 곡선과 분할된 구조로 표현했습니다.<br/>
+            기업의 이니셜과 ‘집’이라는 공간의 이미지를 하나의 심볼에 결합하여 KS벽지가 만들어가는 생활 공간의 가치를 담았습니다.
+          </p>
+          <div class="keyword-line">핵심 키워드&nbsp;&nbsp;<b>공간 / 집 / 결합 / 부드러움</b></div>
+        </div></div>
+        <div class="extra-row"><div class="extra-label">COLOR</div><div class="extra-content">
+          <div class="color-pair">
+            <div class="color-block"><div class="color-chip black"></div><div class="color-text"><div class="color-name">BLACK _ Primary Color</div><div class="color-cmyk">[ C 0, M 0, Y 0, K 100 ]</div></div></div>
+            <div class="color-block"><div class="color-chip orange"></div><div class="color-text"><div class="color-name">ORANGE _ Accent Color</div><div class="color-cmyk">[ C 10, M 80, Y 100, K 0 ]</div></div></div>
+          </div>
+          <p class="color-note-single">
+            Black을 CI의 기본 컬러로 설정하여 KS벽지만의 간결하고 견고한 이미지를 구축하고, Orange를 포인트 컬러로 활용해 디지털과 오프라인 매체에 활기를 더했습니다.
+          </p>
+        </div></div>
+      `
+    },
+    "03": {
+      title: "미라클여성의원", year: "2024",
+      role: "CI Design · Brand Direction · Website Planning · Art Direction · Space Direction",
+      extra: `
+        <div class="extra-row"><div class="extra-label">CONCEPT</div><div class="extra-content">
+          <p class="extra-body">
+            미라클(Miracle)의 첫 글자 ‘M’을 모티프로 생명을 상징하는 심볼을 개발했습니다.<br/>
+            정자와 난자가 만나 새로운 생명으로 이어지는 과정을 M의 구조 안에 은유적으로 담았습니다.<br/>
+            특히 M을 이루는 두 개의 ‘I’가 서로 마주하며 만들어내는 중심의 곡선은 물방울이자, 생명을 품는 자궁과 아기집을 상징합니다.
+          </p>
+          <div class="keyword-line">핵심 키워드&nbsp;&nbsp;<b>만남 / 생명 / 희망 / 시작</b></div>
+        </div></div>
+        <div class="extra-row"><div class="extra-label">COLOR</div><div class="extra-content">
+          <div class="color-with-note">
+            <div class="color-block"><div class="color-chip burgundy"></div><div class="color-text"><div class="color-name">WARM BURGUNDY</div><div class="color-cmyk">[ C 36, M 74, Y 58, K 20 ]</div></div></div>
+            <p class="color-note-side">
+              여성스러운 감성과 따뜻함을 담은 버건디 컬러를 메인 컬러로 사용하여<br/>
+              생명이 피어나는 순간과 새로운 시작에 대한 희망을 표현했습니다.
+            </p>
+          </div>
+        </div></div>
+      `
+    },
+
+    /* ★ 04~06 : t-style-a */
+    "04": {
+      titleHTML: `<span class="title-sub">하이앤드 고강도벽지</span><span class="title-main">그랑디</span>`,
+      title: "하이앤드 고강도벽지 그랑디",
+      hideMeta: true, year: "", role: "",
+      styleClass: "t-style-a",
+      extra: detailHTML(
+        "케이에스더블유", "2026", "Domestic",
+        "Collection Planning · BI Design · Interior Image Selection · Wallpaper Mapping · Editorial Design · Print Production"
+      )
+    },
+    "05": {
+      titleHTML: `<span class="title

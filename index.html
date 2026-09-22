@@ -93,6 +93,7 @@ section{padding:110px clamp(24px,6vw,90px)}
   will-change:transform;touch-action:manipulation;
   -webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;
   scroll-margin-top:100px;
+  z-index:1;
 }
 .work-grid.identity .work-card,
 .work-grid.marketing .work-card{
@@ -101,17 +102,17 @@ section{padding:110px clamp(24px,6vw,90px)}
   background-position:center;
 }
 @media (hover:hover) and (pointer:fine){
-  .work-card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 16px 32px rgba(0,0,0,.18),0 4px 10px rgba(0,0,0,.08)}
+  .work-card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 16px 32px rgba(0,0,0,.18),0 4px 10px rgba(0,0,0,.08); z-index:999;}
   .work-card:hover .view-tag{background:#171717;color:#fff}
 }
 .work-card.static{cursor:default;transition:none}
-.work-card.static:hover{transform:none;box-shadow:none}
+.work-card.static:hover{transform:none;box-shadow:none; z-index:1;}
 .work-no{position:absolute;left:16px;top:14px;font-size:10px;letter-spacing:.12em;color:#555;z-index:2}
 .view-tag{position:absolute;right:12px;top:12px;display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border-radius:20px;border:1px solid rgba(23,23,23,.15);background:rgba(255,255,255,.85);backdrop-filter:blur(6px);font-size:9px;letter-spacing:.08em;color:#333;z-index:3;transition:background .25s ease,color .25s ease}
 
 .work-grid.identity .work-card{background-position:center calc(50% + 15px);}
 .work-grid.identity .work-card[data-id="03"]{background-position:center calc(50% + 20px);}
-.work-grid.marketing .work-card[data-id="29"]{background-position:center calc(50% + 20px);}
+.work-grid.marketing .work-card[data-id="31"]{background-position:center calc(50% + 20px);}
 
 .work-card .work-title-overlay{
   position:absolute;left:0;right:0;bottom:0;z-index:4;
@@ -180,7 +181,6 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
 .modal-next:hover .arrow{transform:translateX(4px)}
 .modal-nav-btn:disabled,.modal-nav-btn.disabled{opacity:.3;cursor:not-allowed;pointer-events:none}
 
-/* 슬라이드 전환 무대 */
 .modal-image-wrap{
   position:relative;width:100%;
   overflow:hidden;
@@ -265,13 +265,12 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
   line-height:1.035;
 }
 
-/* ★ 07~09 : 제목 상단 문구 폰트/자간 조금 더 축소 */
 .modal-title.t-style-b .title-sub{
-  font-size:.52em;      /* .6em → .52em */
+  font-size:.52em;
   font-weight:300;
-  letter-spacing:1px;   /* 2px → 1px */
+  letter-spacing:1px;
   margin-bottom:5px;
-  margin-right:-1px;    /* -2px → -1px */
+  margin-right:-1px;
   line-height:1.035;
 }
 .modal-title.t-style-b .title-main{
@@ -579,7 +578,6 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
   .img-nav.prev{left:8px}
   .img-nav.next{right:8px}
 
-  /* ★ 07~09 모바일 자간도 조금 더 축소 */
   .modal-title.t-style-b .title-sub{letter-spacing:.5px;margin-right:-0.5px;margin-bottom:4px}
   .modal-title.t-style-b .title-main{letter-spacing:4px;margin-right:-4px}
 
@@ -607,7 +605,7 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
 
   .work-grid.identity .work-card{background-position:center calc(50% + 15px)}
   .work-grid.identity .work-card[data-id="03"]{background-position:center calc(50% + 20px)}
-  .work-grid.marketing .work-card[data-id="29"]{background-position:center calc(50% + 20px)}
+  .work-grid.marketing .work-card[data-id="31"]{background-position:center calc(50% + 20px)}
 
   .work-card .work-title-overlay{padding:38px 14px 14px}
   .work-card .work-title-overlay .wt-main{font-size:14px;line-height:1.3}
@@ -745,16 +743,16 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
     <div class="work-category">
       <div class="category-head"><h3>MARKETING</h3></div>
       <div class="work-grid marketing">
-        <a class="work-card" href="javascript:void(0)" data-id="28" data-cat="MARKETING" data-images="market01-1.jpg,market01-2.jpg,market01-3.jpg,market01-4.jpg" style="background-image:url('images/market01.jpg')">
-          <span class="work-no">28</span><span class="view-tag">DETAIL ↗</span>
+        <a class="work-card" href="javascript:void(0)" data-id="30" data-cat="MARKETING" data-images="market01-1.jpg,market01-2.jpg,market01-3.jpg,market01-4.jpg" style="background-image:url('images/market01.jpg')">
+          <span class="work-no">30</span><span class="view-tag">DETAIL ↗</span>
           <span class="work-title-overlay"><span class="wt-main">박수홍 전속모델 계약 프로젝트</span></span>
         </a>
-        <a class="work-card" href="javascript:void(0)" data-id="29" data-cat="MARKETING" data-images="market02-1.jpg,market02-2.jpg,market02-3.jpg,market02-4.jpg,market02-5.jpg,market02-6.jpg" style="background-image:url('images/market02.jpg')">
-          <span class="work-no">29</span><span class="view-tag">DETAIL ↗</span>
+        <a class="work-card" href="javascript:void(0)" data-id="31" data-cat="MARKETING" data-images="market02-1.jpg,market02-2.jpg,market02-3.jpg,market02-4.jpg,market02-5.jpg,market02-6.jpg" style="background-image:url('images/market02.jpg')">
+          <span class="work-no">31</span><span class="view-tag">DETAIL ↗</span>
           <span class="work-title-overlay"><span class="wt-main">우희준 모델 광고 제작</span></span>
         </a>
-        <a class="work-card" href="javascript:void(0)" data-id="30" data-cat="MARKETING" data-images="" style="background-image:url('images/market03.jpg')">
-          <span class="work-no">30</span><span class="view-tag">DETAIL ↗</span>
+        <a class="work-card" href="javascript:void(0)" data-id="32" data-cat="MARKETING" data-images="" style="background-image:url('images/market03.jpg')">
+          <span class="work-no">32</span><span class="view-tag">DETAIL ↗</span>
           <span class="work-title-overlay"><span class="wt-main">3개사 브랜드 광고</span></span>
         </a>
       </div>
@@ -835,6 +833,7 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
     `;
   }
 
+  /* ★ MARKETING 번호 30, 31, 32 로 조정 */
   const PROJECT_DATA = {
     "01": {
       title: "케이에스더블유 CI", year: "2024",
@@ -964,7 +963,7 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
       )
     },
 
-    "28": {
+    "30": {
       title: "박수홍 전속모델 계약 프로젝트", year: "2026",
       role: "Project Direction · Art Direction · Production",
       extra: `
@@ -984,7 +983,7 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
         <div class="extra-row"><div class="extra-label">PRODUCTION</div><div class="extra-content"><p class="extra-tags">Signage · Print Advertising · YouTube Content</p></div></div>
       `
     },
-    "29": {
+    "31": {
       title: "우희준 모델 광고 제작", year: "2023",
       role: "Advertising Concept · Art Direction · Graphic Design",
       extra: `
@@ -1173,7 +1172,8 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
     const imagesAttr = card.dataset.images || '';
     const imageList = imagesAttr.split(',').map(s=>s.trim()).filter(Boolean);
 
-    if (id === "30"){
+    /* ★ 32번이 라디오/TV 광고 전용 상세페이지 */
+    if (id === "32"){
       modalStandard.style.display = 'none';
       modalThirty.style.display = 'block';
       modalThirty.innerHTML = buildThirty();

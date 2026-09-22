@@ -21,7 +21,6 @@ header{position:fixed;z-index:20;top:0;left:0;width:100%;padding:20px 34px;displ
 .logo{font-size:13px;letter-spacing:.08em;font-weight:500}
 nav{display:flex;gap:28px;font-size:10px;letter-spacing:.12em}
 
-/* 히어로 : 모바일 확대/패럴럭스 제거 */
 .hero{height:85svh;min-height:480px;position:relative;overflow:hidden;color:#fff;background:#000}
 .hero-bg{
   position:absolute;top:0;left:0;width:100%;height:100%;
@@ -110,23 +109,14 @@ section{padding:110px clamp(24px,6vw,90px)}
 .work-no{position:absolute;left:16px;top:14px;font-size:10px;letter-spacing:.12em;color:#555;z-index:2}
 .view-tag{position:absolute;right:12px;top:12px;display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border-radius:20px;border:1px solid rgba(23,23,23,.15);background:rgba(255,255,255,.85);backdrop-filter:blur(6px);font-size:9px;letter-spacing:.08em;color:#333;z-index:3;transition:background .25s ease,color .25s ease}
 
-/* ★ 메인 01~03 아트웍 이미지만 15px 아래로 (03번은 20px) */
-.work-grid.identity .work-card{
-  background-position:center calc(50% + 15px);
-}
-.work-grid.identity .work-card[data-id="03"]{
-  background-position:center calc(50% + 20px);
-}
-/* ★ 마케팅 29번 이미지만 20px 아래로 */
-.work-grid.marketing .work-card[data-id="29"]{
-  background-position:center calc(50% + 20px);
-}
+.work-grid.identity .work-card{background-position:center calc(50% + 15px);}
+.work-grid.identity .work-card[data-id="03"]{background-position:center calc(50% + 20px);}
+.work-grid.marketing .work-card[data-id="29"]{background-position:center calc(50% + 20px);}
 
-/* ★ 메인 28~30 아트웍 하단 오버레이 제목 (그라데이션 50% 연하게 + 자연스럽게) */
 .work-card .work-title-overlay{
   position:absolute;left:0;right:0;bottom:0;z-index:4;
   padding:52px 20px 18px;
-  display:flex;flex-direction:column;gap:4px;
+  display:flex;flex-direction:column;
   background:linear-gradient(
     to top,
     rgba(0,0,0,.42) 0%,
@@ -141,17 +131,9 @@ section{padding:110px clamp(24px,6vw,90px)}
   text-shadow:0 1px 4px rgba(0,0,0,.55);
   transition:background .35s ease;
 }
-.work-card .work-title-overlay .wt-sub{
-  font-family:Inter,sans-serif;
-  font-size:10px;font-weight:600;
-  letter-spacing:.18em;
-  color:#e8e8e8;
-  text-transform:uppercase;
-  text-shadow:0 1px 3px rgba(0,0,0,.5);
-}
 .work-card .work-title-overlay .wt-main{
   font-family:"Noto Sans KR",sans-serif;
-  font-size:15px;font-weight:700;
+  font-size:16px;font-weight:700;
   letter-spacing:-.01em;
   color:#fff;
   line-height:1.35;
@@ -198,10 +180,66 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
 .modal-next:hover .arrow{transform:translateX(4px)}
 .modal-nav-btn:disabled,.modal-nav-btn.disabled{opacity:.3;cursor:not-allowed;pointer-events:none}
 
-.modal-image-wrap{position:relative;width:100%}
-.modal-image{width:100%;aspect-ratio:47/30;background:#d6d6d4;border:1px solid var(--line);background-position:center;background-size:cover;background-repeat:no-repeat;position:relative;transition:background-image .3s ease}
+/* ★ 슬라이드 전환 무대 */
+.modal-image-wrap{
+  position:relative;width:100%;
+  overflow:hidden;
+}
+.modal-image{
+  width:100%;aspect-ratio:47/30;background:#d6d6d4;border:1px solid var(--line);
+  background-position:center;background-size:cover;background-repeat:no-repeat;
+  position:relative;
+  will-change:transform, opacity;
+}
 
-.img-nav{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;border:none;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#171717;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:4;transition:background .25s ease,transform .25s ease,color .25s ease;box-shadow:0 4px 14px rgba(0,0,0,.12);font-family:Inter,sans-serif;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+/* 슬라이드 레이어 */
+.slide-layer{
+  position:absolute;
+  inset:0;
+  background-color:#d6d6d4;
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+  border:1px solid var(--line);
+  pointer-events:none;
+  z-index:5;
+  will-change:transform, opacity;
+}
+.slide-layer.in-next{
+  animation:slideInNext .45s cubic-bezier(.25,.8,.35,1) forwards;
+}
+.slide-layer.out-next{
+  animation:slideOutNext .45s cubic-bezier(.25,.8,.35,1) forwards;
+}
+.slide-layer.in-prev{
+  animation:slideInPrev .45s cubic-bezier(.25,.8,.35,1) forwards;
+}
+.slide-layer.out-prev{
+  animation:slideOutPrev .45s cubic-bezier(.25,.8,.35,1) forwards;
+}
+
+@keyframes slideInNext{
+  0%{ transform:translateX(100%); opacity:1; }
+  100%{ transform:translateX(0); opacity:1; }
+}
+@keyframes slideOutNext{
+  0%{ transform:translateX(0); opacity:1; }
+  100%{ transform:translateX(-100%); opacity:1; }
+}
+@keyframes slideInPrev{
+  0%{ transform:translateX(-100%); opacity:1; }
+  100%{ transform:translateX(0); opacity:1; }
+}
+@keyframes slideOutPrev{
+  0%{ transform:translateX(0); opacity:1; }
+  100%{ transform:translateX(100%); opacity:1; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .slide-layer{display:none !important}
+}
+
+.img-nav{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;border:none;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#171717;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:8;transition:background .25s ease,transform .25s ease,color .25s ease;box-shadow:0 4px 14px rgba(0,0,0,.12);font-family:Inter,sans-serif;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 .img-nav.prev{left:14px}
 .img-nav.next{right:14px}
 .img-nav:disabled{opacity:.25;cursor:not-allowed;pointer-events:none}
@@ -251,9 +289,9 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
 .modal-title.t-style-b .title-sub{
   font-size:.6em;
   font-weight:300;
-  letter-spacing:9px;
-  margin-bottom:10px;
-  margin-right:-9px;
+  letter-spacing:2px;
+  margin-bottom:6px;
+  margin-right:-2px;
   line-height:1.035;
 }
 .modal-title.t-style-b .title-main{
@@ -410,16 +448,69 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
   line-height:1.3;
 }
 .m30-audio-wrap{display:flex;align-items:center;gap:12px;flex:none}
-.m30-audio-btn{width:38px;height:38px;border-radius:50%;border:none;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;cursor:pointer;transition:transform .2s ease, background .2s ease}
+.m30-audio-btn{width:38px;height:38px;border-radius:50%;border:none;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;cursor:pointer;transition:transform .2s ease, background .2s ease;flex:none}
 .m30-audio-btn:hover{background:#333;transform:scale(1.05)}
 .m30-audio-btn svg{width:14px;height:14px;fill:#fff}
-.m30-audio-track{position:relative;width:180px;height:4px;border-radius:2px;background:#e3e3e0;overflow:hidden;cursor:pointer}
-.m30-audio-fill{position:absolute;left:0;top:0;bottom:0;width:0%;background:#000}
+
+.m30-audio-track{
+  position:relative;
+  width:180px;
+  height:14px;
+  background:transparent;
+  flex:none;
+  cursor:pointer;
+  touch-action:none;
+  display:flex;
+  align-items:center;
+}
+.m30-audio-track:before{
+  content:"";
+  position:absolute;
+  left:0;right:0;
+  top:50%;
+  transform:translateY(-50%);
+  height:4px;
+  border-radius:2px;
+  background:#e3e3e0;
+}
+.m30-audio-fill{
+  position:absolute;
+  left:0;
+  top:50%;
+  transform:translateY(-50%);
+  height:4px;
+  width:0%;
+  border-radius:2px;
+  background:#000;
+  pointer-events:none;
+}
+.m30-audio-knob{
+  position:absolute;
+  top:50%;
+  left:0%;
+  transform:translate(-50%, -50%);
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:#000;
+  box-shadow:0 1px 3px rgba(0,0,0,.3);
+  pointer-events:none;
+  opacity:0;
+  transition:opacity .2s ease;
+}
+.m30-audio-track:hover .m30-audio-knob,
+.m30-audio-track.dragging .m30-audio-knob{opacity:1}
+
 .m30-audio-time{
   font-family:Inter,sans-serif;font-size:11px;
   letter-spacing:.072em;
-  color:#888;min-width:38px;text-align:right;
+  color:#888;
+  min-width:90px;
+  width:90px;
+  text-align:right;
   line-height:1.3;
+  font-variant-numeric:tabular-nums;
+  flex:none;
 }
 .m30-tv-section{margin-top:56px;padding-top:40px;border-top:1px solid var(--line);text-align:center}
 .m30-tv-head{
@@ -481,9 +572,25 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
   footer{padding:18px 20px;flex-direction:column;gap:6px}
 
   .modal{padding:100px 12px 40px}
-  .modal-info{margin-top:28px}
-  .modal-title{margin-bottom:10px}
-  .modal-meta{flex-direction:column;gap:6px;align-items:center;margin-bottom:14px}
+  .modal-info{margin-top:24px;text-align:left}
+  .modal-title{margin-bottom:14px;text-align:left}
+  .modal-title .title-sub{display:block}
+  .modal-title .title-main{display:block}
+
+  .modal-meta{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:6px;
+    margin:0 0 16px;
+    font-size:12.5px;
+    letter-spacing:.04em;
+    line-height:1.5;
+    text-align:left;
+  }
+  .modal-meta div{display:flex;align-items:baseline;gap:10px;width:100%;}
+  .modal-meta dt{flex:none;min-width:52px;font-size:10px;letter-spacing:.14em;color:#999;text-transform:uppercase;}
+  .modal-meta dd{flex:1;min-width:0;font-size:12.5px;color:#333;line-height:1.5;word-break:keep-all;}
+
   .modal-topbar{top:20px;width:calc(100% - 24px)}
   .modal-nav-btn{padding:10px 18px;font-size:10px;letter-spacing:.12em}
   .thumb{width:45px;height:45px}
@@ -492,15 +599,18 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
   .img-nav.prev{left:8px}
   .img-nav.next{right:8px}
 
-  .modal-title.t-style-b .title-sub{letter-spacing:3.6px;margin-right:-3.6px}
-  .modal-title.t-style-b .title-main{letter-spacing:3.6px;margin-right:-3.6px}
+  .modal-title.t-style-b .title-sub{letter-spacing:1px;margin-right:-1px;margin-bottom:5px}
+  .modal-title.t-style-b .title-main{letter-spacing:4px;margin-right:-4px}
 
-  .modal-extra{padding-left:16px;margin-top:22px;padding-top:22px;gap:18px}
-  .extra-row{grid-template-columns:1fr;gap:8px}
-  .extra-label{padding-top:0}
-  .extra-values{gap:20px}
+  .modal-extra{padding-left:0;margin-top:22px;padding-top:22px;gap:18px}
+  .extra-row{grid-template-columns:1fr;gap:6px;align-items:start}
+  .extra-label{padding-top:0;font-size:12px;letter-spacing:.16em}
+  .extra-values{gap:14px 20px;flex-wrap:wrap;justify-content:flex-start}
+  .extra-values .item{gap:8px}
+  .extra-tags{font-size:12.5px;line-height:1.5}
+  .extra-body{font-size:13px;line-height:1.55}
 
-  .color-pair{gap:24px}
+  .color-pair{gap:20px}
   .color-block{gap:12px}
   .color-block .color-chip{width:42px;height:36px}
   .color-block .color-name{font-size:12px}
@@ -514,25 +624,16 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
   .m30-audio-track{width:120px;}
   .m30-tv-grid{grid-template-columns:1fr;}
 
-  .hero-bg{transform:none !important;height:100% !important;top:0 !important}
-  .hero-content{transform:translateY(-42%) !important}
-
   .work-grid.identity .work-card{background-position:center calc(50% + 15px)}
   .work-grid.identity .work-card[data-id="03"]{background-position:center calc(50% + 20px)}
   .work-grid.marketing .work-card[data-id="29"]{background-position:center calc(50% + 20px)}
 
   .work-card .work-title-overlay{padding:38px 14px 14px}
-  .work-card .work-title-overlay .wt-sub{font-size:9px;letter-spacing:.14em}
-  .work-card .work-title-overlay .wt-main{font-size:13px;line-height:1.3}
-}
-
-@media (hover:none) and (pointer:coarse){
-  .hero-bg{transform:none !important;height:100% !important;top:0 !important}
-  .hero-content{transform:translateY(-42%) !important}
+  .work-card .work-title-overlay .wt-main{font-size:14px;line-height:1.3}
 }
 
 @media (prefers-reduced-motion: reduce){
-  .hero-bg{transform:none !important;height:100% !important;top:0 !important}
+  .hero-bg{transform:none !important}
   .hero-content{transform:translateY(-42%) !important;opacity:1 !important}
 }
 </style>
@@ -665,24 +766,15 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
       <div class="work-grid marketing">
         <a class="work-card" href="javascript:void(0)" data-id="28" data-cat="MARKETING" data-images="market01-1.jpg,market01-2.jpg,market01-3.jpg,market01-4.jpg" style="background-image:url('images/market01.jpg')">
           <span class="work-no">28</span><span class="view-tag">DETAIL ↗</span>
-          <span class="work-title-overlay">
-            <span class="wt-sub">2026 · Project Direction</span>
-            <span class="wt-main">박수홍 전속모델 계약 프로젝트</span>
-          </span>
+          <span class="work-title-overlay"><span class="wt-main">박수홍 전속모델 계약 프로젝트</span></span>
         </a>
         <a class="work-card" href="javascript:void(0)" data-id="29" data-cat="MARKETING" data-images="market02-1.jpg,market02-2.jpg,market02-3.jpg,market02-4.jpg,market02-5.jpg,market02-6.jpg" style="background-image:url('images/market02.jpg')">
           <span class="work-no">29</span><span class="view-tag">DETAIL ↗</span>
-          <span class="work-title-overlay">
-            <span class="wt-sub">2023 · Advertising</span>
-            <span class="wt-main">우희준 모델 광고 제작</span>
-          </span>
+          <span class="work-title-overlay"><span class="wt-main">우희준 모델 광고 제작</span></span>
         </a>
         <a class="work-card" href="javascript:void(0)" data-id="30" data-cat="MARKETING" data-images="" style="background-image:url('images/market03.jpg')">
           <span class="work-no">30</span><span class="view-tag">DETAIL ↗</span>
-          <span class="work-title-overlay">
-            <span class="wt-sub">2021–2023 · Radio / TV</span>
-            <span class="wt-main">3개사 브랜드 광고</span>
-          </span>
+          <span class="work-title-overlay"><span class="wt-main">3개사 브랜드 광고</span></span>
         </a>
       </div>
     </div>
@@ -938,8 +1030,8 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
             <div class="m30-radio-info"><b>제일벽지</b><p>제일 좋은 벽지, 제일벽지</p><div class="m30-keyword">Premium · Trust</div></div>
             <div class="m30-audio-wrap">
               <button class="m30-audio-btn" data-audio="images/market03-1.wav" aria-label="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
-              <div class="m30-audio-track"><div class="m30-audio-fill"></div></div>
-              <span class="m30-audio-time">00:20</span>
+              <div class="m30-audio-track"><div class="m30-audio-fill"></div><div class="m30-audio-knob"></div></div>
+              <span class="m30-audio-time">00:00 / 00:20</span>
             </div>
           </div>
           <div class="m30-radio-item">
@@ -947,8 +1039,8 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
             <div class="m30-radio-info"><b>코스모스벽지</b><p>벽지전문 코스모스벽지</p><div class="m30-keyword">Heritage · Interest</div></div>
             <div class="m30-audio-wrap">
               <button class="m30-audio-btn" data-audio="images/market03-2.wav" aria-label="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
-              <div class="m30-audio-track"><div class="m30-audio-fill"></div></div>
-              <span class="m30-audio-time">00:20</span>
+              <div class="m30-audio-track"><div class="m30-audio-fill"></div><div class="m30-audio-knob"></div></div>
+              <span class="m30-audio-time">00:00 / 00:20</span>
             </div>
           </div>
           <div class="m30-radio-item">
@@ -956,8 +1048,8 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
             <div class="m30-radio-info"><b>KS벽지</b><p>대한민국 대표벽지 KS벽지</p><div class="m30-keyword">Memorability · Fun</div></div>
             <div class="m30-audio-wrap">
               <button class="m30-audio-btn" data-audio="images/market03-3.wav" aria-label="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
-              <div class="m30-audio-track"><div class="m30-audio-fill"></div></div>
-              <span class="m30-audio-time">00:20</span>
+              <div class="m30-audio-track"><div class="m30-audio-fill"></div><div class="m30-audio-knob"></div></div>
+              <span class="m30-audio-time">00:00 / 00:20</span>
             </div>
           </div>
         </div>
@@ -980,10 +1072,8 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
   const heroText = document.getElementById('heroContent');
   const heroScroll = document.getElementById('heroScroll');
   const noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const isTouch = window.matchMedia('(hover:none) and (pointer:coarse)').matches;
-  const isMobile = window.matchMedia('(max-width:800px)').matches;
 
-  if (!noMotion && !isTouch && !isMobile){
+  if (!noMotion){
     let ticking = false;
     function update(){
       const y = window.scrollY, h = hero.offsetHeight;
@@ -999,8 +1089,6 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
     window.addEventListener('scroll', ()=>{ if(!ticking){requestAnimationFrame(update);ticking=true;} }, {passive:true});
     window.addEventListener('resize', update);
     update();
-  } else {
-    heroBg.style.transform = 'none';
   }
 
   const modal = document.getElementById('modal');
@@ -1012,6 +1100,7 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
   const modalStandard = document.getElementById('modalStandard');
   const modalThirty = document.getElementById('modalThirty');
   const modalImage = document.getElementById('modalImage');
+  const modalImageWrap = document.querySelector('.modal-image-wrap');
   const modalNum = document.getElementById('modalNum');
   const modalTitle = document.getElementById('modalTitle');
   const modalMeta = document.getElementById('modalMeta');
@@ -1024,6 +1113,47 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
 
   const clickableCards = Array.from(document.querySelectorAll('.work-card:not(.static)'));
   let currentIndex = 0, currentThumb = 0, thumbs = [], thumbSrcs = [];
+  let sliding = false;
+
+  /* ★ 자연스러운 슬라이드 전환 */
+  function slideTo(nextIdx, direction){
+    if (sliding) return;
+    if (nextIdx < 0 || nextIdx >= thumbSrcs.length) return;
+    if (noMotion){ setImageByIndex(nextIdx); return; }
+    sliding = true;
+
+    const currSrc = thumbSrcs[currentThumb];
+    const nextSrc = thumbSrcs[nextIdx];
+
+    // 나가는 레이어 (현재 이미지)
+    const outLayer = document.createElement('div');
+    outLayer.className = 'slide-layer ' + (direction === 'next' ? 'out-next' : 'out-prev');
+    outLayer.style.backgroundImage = `url('${currSrc}')`;
+    modalImageWrap.appendChild(outLayer);
+
+    // 들어오는 레이어 (다음 이미지)
+    const inLayer = document.createElement('div');
+    inLayer.className = 'slide-layer ' + (direction === 'next' ? 'in-next' : 'in-prev');
+    inLayer.style.backgroundImage = `url('${nextSrc}')`;
+    modalImageWrap.appendChild(inLayer);
+
+    // 아래 실제 이미지도 다음으로 교체 (애니메이션 끝나고 자연스럽게 이어지도록)
+    modalImage.style.backgroundImage = `url('${nextSrc}')`;
+    currentThumb = nextIdx;
+    thumbs.forEach((t, idx)=> t.classList.toggle('active', idx === nextIdx));
+    updateImgNav();
+
+    inLayer.addEventListener('animationend', ()=>{
+      outLayer.remove();
+      inLayer.remove();
+      sliding = false;
+    });
+    setTimeout(()=>{
+      if (outLayer.parentNode) outLayer.remove();
+      if (inLayer.parentNode) inLayer.remove();
+      sliding = false;
+    }, 700);
+  }
 
   function setImageByIndex(i){
     if (i < 0 || i >= thumbSrcs.length) return;
@@ -1049,14 +1179,16 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
     }, {passive:false});
   }
 
-  bindActivate(imgPrev, ()=> setImageByIndex(currentThumb - 1));
-  bindActivate(imgNext, ()=> setImageByIndex(currentThumb + 1));
+  bindActivate(imgPrev, ()=> slideTo(currentThumb - 1, 'prev'));
+  bindActivate(imgNext, ()=> slideTo(currentThumb + 1, 'next'));
 
   modalThumbs.addEventListener('click', e=>{
     const thumb = e.target.closest('.thumb');
     if (!thumb) return;
     const idx = thumbs.indexOf(thumb);
-    if (idx >= 0) setImageByIndex(idx);
+    if (idx >= 0 && idx !== currentThumb){
+      slideTo(idx, idx > currentThumb ? 'next' : 'prev');
+    }
   });
 
   function renderModal(card){
@@ -1117,16 +1249,27 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
       thumbSrcs.push(fullPath);
     });
 
-    setImageByIndex(0);
+    currentThumb = 0;
+    modalImage.style.backgroundImage = thumbSrcs.length ? `url('${thumbSrcs[0]}')` : '';
+    updateImgNav();
   }
 
   let activeAudio = null;
+
+  function fmt(t){
+    t = Math.max(0, Math.floor(t || 0));
+    const m = String(Math.floor(t/60)).padStart(2,'0');
+    const s = String(t%60).padStart(2,'0');
+    return `${m}:${s}`;
+  }
+
   function bindAudioPlayers(){
     document.querySelectorAll('.m30-audio-btn').forEach(btn=>{
       btn.addEventListener('click', function(){
         const src = btn.dataset.audio;
         const item = btn.closest('.m30-radio-item');
         const fill = item.querySelector('.m30-audio-fill');
+        const knob = item.querySelector('.m30-audio-knob');
         const track = item.querySelector('.m30-audio-track');
         const timeLabel = item.querySelector('.m30-audio-time');
         const icon = btn.querySelector('svg');
@@ -1147,30 +1290,86 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
         audio.addEventListener('timeupdate', ()=>{
           if (audio.duration){
             fill.style.width = (audio.currentTime / audio.duration) * 100 + '%';
-            const cur = Math.floor(audio.currentTime);
-            const total = Math.floor(audio.duration) || 20;
-            timeLabel.textContent = `00:${String(cur).padStart(2,'0')} / 00:${String(total).padStart(2,'0')}`;
+            knob.style.left = (audio.currentTime / audio.duration) * 100 + '%';
+            timeLabel.textContent = `${fmt(audio.currentTime)} / ${fmt(audio.duration)}`;
           }
         });
         audio.addEventListener('ended', ()=>{
           icon.innerHTML = '<path d="M8 5v14l11-7z"/>';
           fill.style.width = '0%';
-          timeLabel.textContent = '00:20';
+          knob.style.left = '0%';
+          timeLabel.textContent = '00:00 / 00:20';
           activeAudio = null;
         });
         audio.addEventListener('error', ()=>{
           icon.innerHTML = '<path d="M8 5v14l11-7z"/>';
-          timeLabel.textContent = '00:20';
+          timeLabel.textContent = '00:00 / 00:20';
         });
         audio.play().then(()=>{
           icon.innerHTML = '<path d="M6 5h4v14H6zm8 0h4v14h-4z"/>';
         }).catch(()=>{
           icon.innerHTML = '<path d="M8 5v14l11-7z"/>';
         });
-        track.addEventListener('click', function(e){
+
+        let dragging = false;
+        let wasPlaying = false;
+
+        function posToTime(clientX){
           const rect = track.getBoundingClientRect();
-          if (audio.duration) audio.currentTime = ((e.clientX - rect.left)/rect.width)*audio.duration;
-        });
+          let ratio = (clientX - rect.left) / rect.width;
+          ratio = Math.max(0, Math.min(1, ratio));
+          const dur = audio.duration || 0;
+          return ratio * dur;
+        }
+        function setVisual(t){
+          const dur = audio.duration || 1;
+          const ratio = Math.max(0, Math.min(1, t / dur));
+          fill.style.width = (ratio * 100) + '%';
+          knob.style.left = (ratio * 100) + '%';
+          const total = audio.duration || 20;
+          timeLabel.textContent = `${fmt(t)} / ${fmt(total)}`;
+        }
+        function onDown(e){
+          if (!audio.duration) return;
+          dragging = true;
+          wasPlaying = !audio.paused;
+          track.classList.add('dragging');
+          audio.pause();
+          const clientX = (e.touches ? e.touches[0].clientX : e.clientX);
+          const t = posToTime(clientX);
+          setVisual(t);
+          e.preventDefault();
+        }
+        function onMove(e){
+          if (!dragging) return;
+          const clientX = (e.touches ? e.touches[0].clientX : e.clientX);
+          const t = posToTime(clientX);
+          setVisual(t);
+          e.preventDefault();
+        }
+        function onUp(e){
+          if (!dragging) return;
+          dragging = false;
+          track.classList.remove('dragging');
+          const clientX = (e.changedTouches ? e.changedTouches[0].clientX : (e.clientX));
+          const t = posToTime(clientX);
+          try { audio.currentTime = t; } catch(err){}
+          setVisual(t);
+          if (wasPlaying){
+            audio.play().then(()=>{
+              icon.innerHTML = '<path d="M6 5h4v14H6zm8 0h4v14h-4z"/>';
+            }).catch(()=>{});
+          }
+        }
+
+        track.addEventListener('mousedown', onDown);
+        window.addEventListener('mousemove', onMove);
+        window.addEventListener('mouseup', onUp);
+
+        track.addEventListener('touchstart', onDown, {passive:false});
+        window.addEventListener('touchmove', onMove, {passive:false});
+        window.addEventListener('touchend', onUp);
+        window.addEventListener('touchcancel', onUp);
       });
     });
   }
@@ -1225,11 +1424,11 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
     if (!modal.classList.contains('open')) return;
     if (e.key === 'Escape') closeModal();
     if (e.key === 'ArrowRight') {
-      if (currentThumb < thumbSrcs.length - 1) setImageByIndex(currentThumb + 1);
+      if (currentThumb < thumbSrcs.length - 1) slideTo(currentThumb + 1, 'next');
       else goNextProject();
     }
     if (e.key === 'ArrowLeft') {
-      if (currentThumb > 0) setImageByIndex(currentThumb - 1);
+      if (currentThumb > 0) slideTo(currentThumb - 1, 'prev');
     }
   });
 })();

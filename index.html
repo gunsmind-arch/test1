@@ -180,7 +180,7 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
 .modal-next:hover .arrow{transform:translateX(4px)}
 .modal-nav-btn:disabled,.modal-nav-btn.disabled{opacity:.3;cursor:not-allowed;pointer-events:none}
 
-/* ★ 슬라이드 전환 무대 */
+/* 슬라이드 전환 무대 */
 .modal-image-wrap{
   position:relative;width:100%;
   overflow:hidden;
@@ -192,7 +192,6 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
   will-change:transform, opacity;
 }
 
-/* 슬라이드 레이어 */
 .slide-layer{
   position:absolute;
   inset:0;
@@ -205,35 +204,15 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
   z-index:5;
   will-change:transform, opacity;
 }
-.slide-layer.in-next{
-  animation:slideInNext .45s cubic-bezier(.25,.8,.35,1) forwards;
-}
-.slide-layer.out-next{
-  animation:slideOutNext .45s cubic-bezier(.25,.8,.35,1) forwards;
-}
-.slide-layer.in-prev{
-  animation:slideInPrev .45s cubic-bezier(.25,.8,.35,1) forwards;
-}
-.slide-layer.out-prev{
-  animation:slideOutPrev .45s cubic-bezier(.25,.8,.35,1) forwards;
-}
+.slide-layer.in-next{ animation:slideInNext .45s cubic-bezier(.25,.8,.35,1) forwards; }
+.slide-layer.out-next{ animation:slideOutNext .45s cubic-bezier(.25,.8,.35,1) forwards; }
+.slide-layer.in-prev{ animation:slideInPrev .45s cubic-bezier(.25,.8,.35,1) forwards; }
+.slide-layer.out-prev{ animation:slideOutPrev .45s cubic-bezier(.25,.8,.35,1) forwards; }
 
-@keyframes slideInNext{
-  0%{ transform:translateX(100%); opacity:1; }
-  100%{ transform:translateX(0); opacity:1; }
-}
-@keyframes slideOutNext{
-  0%{ transform:translateX(0); opacity:1; }
-  100%{ transform:translateX(-100%); opacity:1; }
-}
-@keyframes slideInPrev{
-  0%{ transform:translateX(-100%); opacity:1; }
-  100%{ transform:translateX(0); opacity:1; }
-}
-@keyframes slideOutPrev{
-  0%{ transform:translateX(0); opacity:1; }
-  100%{ transform:translateX(100%); opacity:1; }
-}
+@keyframes slideInNext{ 0%{ transform:translateX(100%); opacity:1; } 100%{ transform:translateX(0); opacity:1; } }
+@keyframes slideOutNext{ 0%{ transform:translateX(0); opacity:1; } 100%{ transform:translateX(-100%); opacity:1; } }
+@keyframes slideInPrev{ 0%{ transform:translateX(-100%); opacity:1; } 100%{ transform:translateX(0); opacity:1; } }
+@keyframes slideOutPrev{ 0%{ transform:translateX(0); opacity:1; } 100%{ transform:translateX(100%); opacity:1; } }
 
 @media (prefers-reduced-motion: reduce){
   .slide-layer{display:none !important}
@@ -286,12 +265,13 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
   line-height:1.035;
 }
 
+/* ★ 07~09 : 제목 상단 문구 폰트/자간 조금 더 축소 */
 .modal-title.t-style-b .title-sub{
-  font-size:.6em;
+  font-size:.52em;      /* .6em → .52em */
   font-weight:300;
-  letter-spacing:2px;
-  margin-bottom:6px;
-  margin-right:-2px;
+  letter-spacing:1px;   /* 2px → 1px */
+  margin-bottom:5px;
+  margin-right:-1px;    /* -2px → -1px */
   line-height:1.035;
 }
 .modal-title.t-style-b .title-main{
@@ -599,7 +579,8 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
   .img-nav.prev{left:8px}
   .img-nav.next{right:8px}
 
-  .modal-title.t-style-b .title-sub{letter-spacing:1px;margin-right:-1px;margin-bottom:5px}
+  /* ★ 07~09 모바일 자간도 조금 더 축소 */
+  .modal-title.t-style-b .title-sub{letter-spacing:.5px;margin-right:-0.5px;margin-bottom:4px}
   .modal-title.t-style-b .title-main{letter-spacing:4px;margin-right:-4px}
 
   .modal-extra{padding-left:0;margin-top:22px;padding-top:22px;gap:18px}
@@ -1115,7 +1096,6 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
   let currentIndex = 0, currentThumb = 0, thumbs = [], thumbSrcs = [];
   let sliding = false;
 
-  /* ★ 자연스러운 슬라이드 전환 */
   function slideTo(nextIdx, direction){
     if (sliding) return;
     if (nextIdx < 0 || nextIdx >= thumbSrcs.length) return;
@@ -1125,19 +1105,16 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
     const currSrc = thumbSrcs[currentThumb];
     const nextSrc = thumbSrcs[nextIdx];
 
-    // 나가는 레이어 (현재 이미지)
     const outLayer = document.createElement('div');
     outLayer.className = 'slide-layer ' + (direction === 'next' ? 'out-next' : 'out-prev');
     outLayer.style.backgroundImage = `url('${currSrc}')`;
     modalImageWrap.appendChild(outLayer);
 
-    // 들어오는 레이어 (다음 이미지)
     const inLayer = document.createElement('div');
     inLayer.className = 'slide-layer ' + (direction === 'next' ? 'in-next' : 'in-prev');
     inLayer.style.backgroundImage = `url('${nextSrc}')`;
     modalImageWrap.appendChild(inLayer);
 
-    // 아래 실제 이미지도 다음으로 교체 (애니메이션 끝나고 자연스럽게 이어지도록)
     modalImage.style.backgroundImage = `url('${nextSrc}')`;
     currentThumb = nextIdx;
     thumbs.forEach((t, idx)=> t.classList.toggle('active', idx === nextIdx));
@@ -1152,7 +1129,7 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
       if (outLayer.parentNode) outLayer.remove();
       if (inLayer.parentNode) inLayer.remove();
       sliding = false;
-    }, 700);
+    }, 800);
   }
 
   function setImageByIndex(i){

@@ -4,6 +4,21 @@
 <meta charset="utf-8" />
 <meta content="width=device-width,initial-scale=1" name="viewport" />
 <title>SOYOUN KIM — Designer & Creator</title>
+
+<!-- ★ 소셜 미리보기 (OG) 태그 — thumb.webp 사용 -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://supersys-max.github.io/portfolio/" />
+<meta property="og:title" content="SOYOUN KIM — Designer & Creator" />
+<meta property="og:description" content="Brand Identity · Editorial · Graphic · Digital" />
+<meta property="og:image" content="https://supersys-max.github.io/portfolio/images/thumb.webp" />
+<meta property="og:image:type" content="image/webp" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="SOYOUN KIM — Designer & Creator" />
+<meta name="twitter:description" content="Brand Identity · Editorial · Graphic · Digital" />
+<meta name="twitter:image" content="https://supersys-max.github.io/portfolio/images/thumb.webp" />
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wdth,wght@75..125,100..700&family=Noto+Sans+KR:wght@100;200;300;400;500;700&display=swap');
 :root{--bg:#f4f4f2;--text:#171717;--muted:#777;--line:#d8d8d5}
@@ -210,7 +225,6 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
   position:relative;
   will-change:transform, opacity;
 }
-/* ★ 비메오 영상 슬롯 */
 .modal-image .video-slot{
   position:absolute;inset:0;
   display:none;
@@ -267,7 +281,6 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
 .thumb{width:88px;height:88px;flex:none;border-radius:10px;background:#d6d6d4;border:1px solid var(--line);background-position:center;background-size:cover;background-repeat:no-repeat;cursor:pointer;position:relative;overflow:hidden;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 .thumb:hover{transform:translateY(-3px);border-color:#999}
 .thumb.active{border:2px solid #171717;box-shadow:0 4px 14px rgba(0,0,0,.18)}
-/* 영상 썸네일 표시 */
 .thumb.video-thumb{
   background-color:#000;
   background-image:none !important;
@@ -1151,7 +1164,7 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
 
   const clickableCards = Array.from(document.querySelectorAll('.work-card:not(.static)'));
   let currentIndex = 0, currentThumb = 0, thumbs = [], thumbSrcs = [];
-  let currentVimeo = null;   /* Vimeo 영상 ID (없으면 null) */
+  let currentVimeo = null;
   let sliding = false;
 
   function clearSlideLayers(){
@@ -1324,7 +1337,6 @@ footer{background:#000;color:#777;padding:20px 34px;font-size:9px;letter-spacing
       modalExtra.style.display = 'none';
     }
 
-    /* ★ Vimeo ID 저장 */
     currentVimeo = (data && data.vimeo) ? data.vimeo : null;
 
     modalThumbs.innerHTML = '';
